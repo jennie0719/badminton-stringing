@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 country: formData.get('country'),
                 model: formData.get('model'), 
                 string: formData.get('string'),
-                pounds: formData.get('tension'),
+                tension: formData.get('tension'),
                 racketCount: parseInt(formData.get('racketCount')),
                 payStatus: payStatus, 
                 note: formData.get('note')
