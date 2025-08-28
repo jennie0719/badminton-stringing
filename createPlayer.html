@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增選手</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="top-bar"></div>
+    
+    <div class="container">
+        <h1>登記選手資料</h1>
+        <p>此選手ID不在資料庫中，請填入選手姓名以及國家。</p>
+        <form id="playerForm">
+            <label for="newBwfId">選手ID:</label>
+            <input type="text" id="newBwfId" name="newBwfId" readonly>
+
+            <label for="name">姓名:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="country">國家:</label>
+            <input type="text" id="country" name="country" required>
+
+            <button type="submit" class="primary-btn">登記選手</button>
+        </form>
+        <div id="status-message" class="info-box"></div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // 在頁面載入時載入導航欄並填入ID
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('top-bar.html').then(response => response.text()).then(html => {
+                document.getElementById('top-bar').innerHTML = html;
+            });
+            const params = new URLSearchParams(window.location.search);
+            document.getElementById('newBwfId').value = params.get('id');
+        });
+    </script>
+</body>
+</html>
