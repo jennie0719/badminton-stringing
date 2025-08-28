@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 bwfId: document.getElementById('bwfId').value,
                 name: formData.get('name'),
                 country: formData.get('country'),
-                racketModel: formData.get('model'), 
+                model: formData.get('model'), 
                 string: formData.get('string'),
                 pounds: formData.get('tension'),
                 racketCount: parseInt(formData.get('racketCount')),
