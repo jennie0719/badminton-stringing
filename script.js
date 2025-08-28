@@ -1,5 +1,5 @@
 // ====== 設定你的 Apps Script Web App URL ======
-const BASE_URL = 'https://script.google.com/macros/s/AKfycbyYyyG7VvVuA2sFZ36vlCIv9IbJTSKJRRcQB96E28olGVVEs5yIeqY7k-z7tHkdtsQm/exec'; 
+const BASE_URL = 'https://script.google.com/macros/s/AKfycbzjHqtRpqEWKdVKKnpv7YrfL61yvhRs_jB13dQo42I/dev'; 
 
 // ====== 首頁 (index.html) 的邏輯 ======
 async function queryPlayerAndRedirect() {
