@@ -36,6 +36,7 @@
             </div>
 
             <div class="action-buttons">
+                <button id="print-btn" onclick="printCurOrder()" class="primary-btn">列印 Print</button>
                 <button id="pay-btn" onclick="updateOrder('payStatus', '已付清')" class="primary-btn">付清 Pay</button>
                 <button id="complete-btn" onclick="updateOrder('completeTime', new Date().toLocaleString())">完成 Complete</button>
                 <button id="pickup-btn" onclick="updateOrder('pickupTime', new Date().toLocaleString())">取拍 Pickup</button>

@@ -176,7 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 tension: formData.get('tension'),
                 racketCount: parseInt(formData.get('racketCount')),
                 payStatus: payStatus, 
-                note: formData.get('note')
+                note: formData.get('note'),
+                dropOffTime: new Date().toLocaleString()
             };
 
             const statusMessage = document.getElementById('status-message');
@@ -342,6 +343,16 @@ function initPrintPage() {
     } else {
         document.getElementById('print-container').textContent = '無效的訂單編號。\nInvalid order number.';
     }
+}
+
+function printCurOrder() {
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('orderId');
+    if (!orderId) {
+        document.getElementById('status-message').textContent = '無效的訂單編號。\nInvalid order number.';
+        return;
+    }
+    window.open(`print.html?orderId=${orderId}`, '_blank')
 }
 
 async function printOrder(orderId) {
