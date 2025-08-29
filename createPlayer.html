@@ -10,19 +10,23 @@
     <div id="top-bar"></div>
     
     <div class="container">
-        <h1>登記選手資料</h1>
-        <p>此選手ID不在資料庫中，請填入選手姓名以及國家。</p>
+        <h1>登記選手資料 Player Registration</h1>
+        <p>此選手ID不在資料庫中，請填入選手姓名以及國家。<br>
+            We couldn’t find this player ID. Please provide the player’s name and country.
+        </p>
         <form id="playerForm">
-            <label for="newBwfId">選手ID:</label>
+            <label for="newBwfId">選手 BWF ID:</label>
             <input type="text" id="newBwfId" name="newBwfId" readonly>
 
-            <label for="name">姓名:</label>
+            <label for="name">姓名 Name:</label>
             <input type="text" id="name" name="name" required>
             
-            <label for="country">國家:</label>
-            <input type="text" id="country" name="country" required>
+            <label for="country">國家 Country:</label>
+            <select id="country" name="country" required>
+                <option value="">-- 請選擇國家 Please select your country. --</option>
+            </select>
 
-            <button type="submit" class="primary-btn">登記選手</button>
+            <button type="submit" class="primary-btn">登記 Register</button>
         </form>
         <div id="status-message" class="info-box"></div>
     </div>
@@ -36,6 +40,8 @@
             });
             const params = new URLSearchParams(window.location.search);
             document.getElementById('newBwfId').value = params.get('id');
+
+            populateCountryDropdown();
         });
     </script>
 </body>

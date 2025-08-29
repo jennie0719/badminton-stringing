@@ -30,16 +30,15 @@
             <div id="status-bar-container"></div>
             <div id="racket-list"></div>
 
-            <div class="action-buttons">
-                <button id="pay-btn" onclick="updateOrder('payStatus', '已付清')" class="primary-btn">付清</button>
-                <button id="complete-btn" onclick="updateOrder('completeTime', new Date().toLocaleString())">完成</button>
-                <button id="pickup-btn" onclick="updateOrder('pickupTime', new Date().toLocaleString())">取拍</button>
-            </div>
-            
             <div class="update-section">
-                <label for="stringer">穿線師:</label>
-                <input type="text" id="stringer" placeholder="輸入穿線師姓名">
-                <button onclick="updateOrder('stringer', document.getElementById('stringer').value)">更新穿線師</button>
+                <label for="stringer">穿線師 Stringer:</label>
+                <input type="text" id="stringer" placeholder="輸入穿線師姓名 Enter stringer’s name">
+            </div>
+
+            <div class="action-buttons">
+                <button id="pay-btn" onclick="updateOrder('payStatus', '已付清')" class="primary-btn">付清 Pay</button>
+                <button id="complete-btn" onclick="updateOrder('completeTime', new Date().toLocaleString())">完成 Complete</button>
+                <button id="pickup-btn" onclick="updateOrder('pickupTime', new Date().toLocaleString())">取拍 Pickup</button>
             </div>
         </div>
         <div id="status-message" class="info-box"></div>
@@ -60,7 +59,7 @@
             if (orderId) {
                 queryOrder(orderId); // 呼叫新的 queryOrder 函式
             } else {
-                document.getElementById('status-message').textContent = '無效的訂單編號，請回到首頁重新查詢。';
+                document.getElementById('status-message').textContent = '無效的訂單編號，請回到首頁重新查詢。\nInvalid order number. Return to homepage to search.';
                 document.getElementById('order-details').style.display = 'none';
             }
         });

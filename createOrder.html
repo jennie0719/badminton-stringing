@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新增訂單</title>
+    <title>新增訂單 New Order</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="top-bar"></div>
     
     <div class="container">
-        <h1>新增訂單資料</h1>
+        <h1>新增訂單資料 New Order</h1>
         <div id="player-info" class="info-box"></div>
 
         <form id="orderForm" class="section">
@@ -18,26 +18,26 @@
             <input type="hidden" id="name" name="name">
             <input type="hidden" id="country" name="country">
             
-            <label for="model">拍型:</label>
+            <label for="model">拍型 Racket Model:</label>
             <input type="text" id="model" name="model" required>
 
-            <label for="string">線材:</label>
+            <label for="string">線材 String:</label>
             <input type="text" id="string" name="string" required>
 
-            <label for="tension">磅數:</label>
+            <label for="tension">磅數 Tension:</label>
             <input type="number" id="tension" name="tension" required>
 
-            <label for="racketCount">支數:</label>
+            <label for="racketCount">支數 No. of Rackets:</label>
             <input type="number" id="racketCount" name="racketCount" min="1" value="1" required>
 
-            <label for="payStatus">繳費狀態:</label>
-            <input type="radio" id="notPaid" name="payStatus">未繳</input>
-            <input type="radio" id="paid" name="payStatus">已付清</input>
+            <label for="payStatus">繳費狀態 Pay Status:</label>
+            <input type="radio" id="notPaid" name="payStatus">未繳 Not Paid</input>
+            <input type="radio" id="paid" name="payStatus">已付清 Paid</input>
 
-            <label for="note">備註:</label>
+            <label for="note">備註 Note:</label>
             <textarea id="note" name="note"></textarea>
 
-            <button type="submit" class="primary-btn">送出</button>
+            <button type="submit" class="primary-btn">送出 Send</button>
         </form>
 
         <div id="status-message" class="info-box"></div>

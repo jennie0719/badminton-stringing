@@ -50,6 +50,14 @@ button:hover {
     background-color: #0056b3;
 }
 
+button:disabled, input:disabled {
+    background-color: #e0e0e0;
+    color: #a0a0a0;
+    cursor: not-allowed;
+    border-color: #d0d0d0;
+    box-shadow: none;
+}
+
 .primary-btn {
     background-color: #28a745;
 }
@@ -84,4 +92,23 @@ button:hover {
 
 .update-section {
     margin-top: 20px;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px; /* Adjust font size to match inputs */
+    margin-top: 8px;
+    margin-bottom: 8px;
+    box-sizing: border-box; /* Ensure padding doesn't affect total width */
+    font-family: Arial, system-ui, "Microsoft JhengHei", sans-serif;
+    height: 40px; /* Optional: Set a consistent height */
+}
+
+/* Style for the select options */
+select option {
+    font-size: 16px;
+    font-family: Arial, system-ui, "Microsoft JhengHei", sans-serif;
 }
