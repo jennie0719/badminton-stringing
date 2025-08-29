@@ -31,15 +31,15 @@
             <div id="racket-list"></div>
 
             <div class="action-buttons">
-                <button id="pay-btn" onclick="updateOrder('繳費狀態', '已付清')" class="primary-btn">付清</button>
-                <button id="complete-btn" onclick="updateOrder('完成時間', new Date().toLocaleString())">完成</button>
-                <button id="pickup-btn" onclick="updateOrder('實際取拍時間', new Date().toLocaleString())">取拍</button>
+                <button id="pay-btn" onclick="updateOrder('payStatus', '已付清')" class="primary-btn">付清</button>
+                <button id="complete-btn" onclick="updateOrder('completeTime', new Date().toLocaleString())">完成</button>
+                <button id="pickup-btn" onclick="updateOrder('pickupTime', new Date().toLocaleString())">取拍</button>
             </div>
             
             <div class="update-section">
                 <label for="stringer">穿線師:</label>
                 <input type="text" id="stringer" placeholder="輸入穿線師姓名">
-                <button onclick="updateOrder('穿線師', document.getElementById('stringer').value)">更新穿線師</button>
+                <button onclick="updateOrder('stringer', document.getElementById('stringer').value)">更新穿線師</button>
             </div>
         </div>
         <div id="status-message" class="info-box"></div>

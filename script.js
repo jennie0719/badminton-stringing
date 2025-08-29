@@ -1,5 +1,5 @@
 // ====== 設定你的 Apps Script Web App URL ======
-const BASE_URL = 'https://script.google.com/macros/s/AKfycbzjHqtRpqEWKdVKKnpv7YrfL61yvhRs_jB13dQo42I/dev'; 
+const BASE_URL = 'https://script.google.com/macros/s/AKfycbyYyyG7VvVuA2sFZ36vlCIv9IbJTSKJRRcQB96E28olGVVEs5yIeqY7k-z7tHkdtsQm/exec'; 
 
 // ====== 首頁 (index.html) 的邏輯 ======
 async function queryPlayerAndRedirect() {
@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             const statusMessage = document.getElementById('status-message');
+
             try {
                 const response = await fetch(`${BASE_URL}?action=createOrder`, {
                     method: 'POST',
@@ -152,7 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // ====== 取拍頁面 (pickup.html) 的邏輯 ======
 async function queryOrder(orderId) {
     const orderDetails = document.getElementById('order-details');
-    const racketList = document.getElementById('racket-list');
     const statusMessage = document.getElementById('status-message');
     
     try {
@@ -180,42 +180,42 @@ async function renderOrderDetails(rackets) {
     const statusMessage = document.getElementById('status-message');
 
     const firstRacket = rackets[0];
-    let statusText = '已收拍';
+    let statusText = '未完成';
     let statusClass = 'status-1';
     let isCompleted = false;
     let isPickedUp = false;
 
-    if (firstRacket['實際取拍時間']) {
+    if (firstRacket['pickupTime']) {
         statusText = '已取拍';
         statusClass = 'status-3';
         isPickedUp = true;
-    } else if (firstRacket['完成時間']) {
+    } else if (firstRacket['completeTime']) {
         statusText = '已完成';
         statusClass = 'status-2';
         isCompleted = true;
     }
 
     statusBar.innerHTML = `<div class="status-bar ${statusClass}">目前狀態：${statusText}</div>`;
-    document.getElementById('pay-btn').disabled = firstRacket['繳費狀態'] === '已付清';
+    document.getElementById('pay-btn').disabled = firstRacket['payStatus'] === '已付清';
     document.getElementById('complete-btn').disabled = isCompleted || isPickedUp;
     document.getElementById('pickup-btn').disabled = isPickedUp || !isCompleted;
     document.getElementById('stringer').disabled = isCompleted || isPickedUp;
 
     if (isCompleted || isPickedUp) {
-        document.getElementById('stringer').value = firstRacket['穿線師'];
+        document.getElementById('stringer').value = firstRacket['stringer'];
     }
 
     racketList.innerHTML = '';
     rackets.forEach(racket => {
         const item = document.createElement('div');
         item.innerHTML = `
-            <h3>單據號碼：${racket['單據號碼']}</h3>
-            <div><strong>客人：</strong>${racket['選手姓名']} (${racket['國家']})</div>
-            <div><strong>拍型 / 線材 / 磅數：</strong>${racket['拍型']} / ${racket['線材']} / ${racket['磅數']}</div>
-            <div><strong>繳費狀態：</strong>${racket['繳費狀態']}</div>
-            <div><strong>備註：</strong>${racket['備註']}</div>
-            ${racket['完成時間'] ? `<div><strong>完成時間：</strong>${racket['完成時間']}</div>` : ''}
-            ${racket['實際取拍時間'] ? `<div><strong>實際取拍時間：</strong>${racket['實際取拍時間']}</div>` : ''}
+            <h3>單據號碼：${racket['serial']}</h3>
+            <div><strong>客人：</strong>${racket['name']} (${racket['country']})</div>
+            <div><strong>拍型 / 線材 / 磅數：</strong>${racket['model']} / ${racket['string']} / ${racket['tension']}</div>
+            <div><strong>繳費狀態：</strong>${racket['payStatus']}</div>
+            <div><strong>備註：</strong>${racket['note']}</div>
+            ${racket['completeTime'] ? `<div><strong>完成時間：</strong>${racket['completeTime']}</div>` : ''}
+            ${racket['pickupTime'] ? `<div><strong>取拍時間：</strong>${racket['pickupTime']}</div>` : ''}
         `;
         racketList.appendChild(item);
     });
@@ -232,10 +232,14 @@ async function updateOrder(field, value) {
         return;
     }
     
-    if (field === '完成時間' && !document.getElementById('stringer').value) {
+    if (field === 'completeTime' && !document.getElementById('stringer').value) {
         alert('請先輸入穿線師姓名再標記完成！');
         document.getElementById('stringer').focus();
         return;
+    }
+
+    if (field === 'completeTime') {
+        updateOrder('stringer', document.getElementById('stringer').value);
     }
 
     try {
@@ -290,13 +294,15 @@ async function printOrder(orderId) {
                 printItem.className = 'print-item';
                 printItem.innerHTML = `
                     <h2>羽球穿線單</h2>
-                    <p><strong>訂單編號：</strong>${racket['訂單編號']}</p>
-                    <p><strong>單據號碼：</strong>${racket['單據號碼']}</p>
-                    <p><strong>選手姓名：</strong>${racket['選手姓名']}</p>
-                    <p><strong>拍型：</strong>${racket['拍型']}</p>
-                    <p><strong>線材：</strong>${racket['線材']}</p>
-                    <p><strong>磅數：</strong>${racket['磅數']} 磅</p>
-                    <p><strong>備註：</strong>${racket['備註']}</p>
+                    <p><strong>訂單編號：</strong>${racket['orderId']}</p>
+                    <p><strong>單據號碼：</strong>${racket['serial']}</p>
+                    <p><strong>選手姓名：</strong>${racket['name']}</p>
+                    <p><strong>國家：</strong>${racket['country']}</p>
+                    <p><strong>拍型：</strong>${racket['model']}</p>
+                    <p><strong>線材：</strong>${racket['string']}</p>
+                    <p><strong>磅數：</strong>${racket['tension']} 磅</p>
+                    <p><strong>備註：</strong>${racket['note']}</p>
+                    <p><strong>QRCode：</strong>${racket['qrcode']}</p>
                 `;
                 printContainer.appendChild(printItem);
             });
