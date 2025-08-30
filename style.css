@@ -145,3 +145,52 @@ select option {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 隱藏不需要列印的元素 */
+    #top-bar, .button-group {
+        display: none;
+    }
+
+    /* 確保每個單據都是獨立的一頁 */
+    .print-item {
+        margin: 0;
+        padding: 10px;
+        box-shadow: none;
+        border: none;
+        /* 新增：每個單據之後都強制分頁 */
+        page-break-after: always; 
+    }
+    
+    /* 修正：避免最後一個單據後面出現多餘的空白 */
+    .print-item:last-of-type {
+        page-break-after: avoid;
+    }
+
+    h2, p {
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+    
+    * {
+        color: #000 !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+}
