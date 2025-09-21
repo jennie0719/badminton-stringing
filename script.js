@@ -14,7 +14,7 @@ const COUNTRIES = [
     "Equatorial Guinea (赤道幾內亞)", "Eritrea (厄利垂亞)", "Estonia (愛沙尼亞)", "Eswatini (史瓦帝尼)", "Ethiopia (衣索比亞)",
     "Fiji (斐濟)", "Finland (芬蘭)", "France (法國)", "Gabon (加彭)", "Gambia (甘比亞)", "Georgia (喬治亞)", "Germany (德國)",
     "Ghana (迦納)", "Greece (希臘)", "Grenada (格瑞那達)", "Guatemala (瓜地馬拉)", "Guinea (幾內亞)", "Guinea-Bissau (幾內亞比索)",
-    "Guyana (蓋亞那)", "Haiti (海地)", "Honduras (宏都拉斯)", "Hungary (匈牙利)", "Iceland (冰島)", "India (印度)", "Indonesia (印尼)",
+    "Guyana (蓋亞那)", "Haiti (海地)", "Honduras (宏都拉斯)", "Hong Kong（香港）", "Hungary (匈牙利)", "Iceland (冰島)", "India (印度)", "Indonesia (印尼)",
     "Iran (伊朗)", "Iraq (伊拉克)", "Ireland (愛爾蘭)", "Israel (以色列)", "Italy (義大利)", "Jamaica (牙買加)", "Japan (日本)",
     "Jordan (約旦)", "Kazakhstan (哈薩克)", "Kenya (肯亞)", "Kiribati (吉里巴斯)", "Kosovo (科索沃)", "Kuwait (科威特)", "Kyrgyzstan (吉爾吉斯)",
     "Laos (寮國)", "Latvia (拉脫維亞)", "Lebanon (黎巴嫩)", "Lesotho (賴索托)", "Liberia (賴比瑞亞)", "Libya (利比亞)", "Liechtenstein (列支敦斯登)",
