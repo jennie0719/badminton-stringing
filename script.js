@@ -324,6 +324,9 @@ async function updateOrder(field, value) {
 
     if (field === 'completeTime') {
         updateOrder('stringer', document.getElementById('stringer').value);
+        updateOrder('status', '已完成');
+    } else if (field === 'pickupTime') {
+        updateOrder('status', '已取拍');
     }
 
     try {
