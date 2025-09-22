@@ -322,13 +322,6 @@ async function updateOrder(field, value) {
         return;
     }
 
-    if (field === 'completeTime') {
-        updateOrder('stringer', document.getElementById('stringer').value);
-        updateOrder('status', '已完成');
-    } else if (field === 'pickupTime') {
-        updateOrder('status', '已取拍');
-    }
-
     try {
         const response = await fetch(`${BASE_URL}?action=updateOrder`, {
             method: 'POST',
@@ -339,6 +332,18 @@ async function updateOrder(field, value) {
             })
         });
         const data = await response.json();
+
+        if (field === 'completeTime' && data.success) {
+            response = await fetch(`${BASE_URL}?action=updateOrder`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    orderId: orderId,
+                    field: 'stringer',
+                    value: document.getElementById('stringer').value
+                })
+            });
+            data = await response.json();
+        }
 
         if (data.success) {
             document.getElementById('status-message').textContent = '更新成功！\nUpdate successful!';
